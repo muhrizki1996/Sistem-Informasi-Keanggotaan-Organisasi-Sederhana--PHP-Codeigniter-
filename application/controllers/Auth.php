@@ -26,7 +26,9 @@ class Auth extends CI_Controller
 
         $this->form_validation->set_rules('firstname', 'First Name', 'required|trim');
         $this->form_validation->set_rules('lastname', 'Last Name', 'required|trim');
-        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.email]');
+        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.email]', [
+            'is_unique' => 'Another user already registered with this email'
+        ]);
         $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[5]|matches[confirmpassword]', [
             'matches' => 'Password don\'t match!',
             'min_length' => 'Password too short! (min. 5 char)'
